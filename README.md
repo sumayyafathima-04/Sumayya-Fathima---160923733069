@@ -33,7 +33,6 @@ cd task-manager
 
 
 ### Build the project
-
 If you are using *Maven*:
 
 bash
@@ -47,12 +46,10 @@ bash
 
 
 ### Running the Application
-
 To run the application, use the following command:
 
 bash
 mvn spring-boot:run
-
 
 Or, if you're using *Gradle*:
 
@@ -61,7 +58,6 @@ bash
 
 
 ### Accessing the Application
-
 By default, the application will start on http://localhost:8080.
 
 You can interact with the API via endpoints (if you're building a REST API):
@@ -75,48 +71,81 @@ If you’re using a UI, navigate to http://localhost:8080 to access the applicat
 
 
 📌 API Endpoints
+### 1. *Create a Task*
 
-Create Task
+* *URL*: /api/tasks
 
-POST /tasks
+* *Method*: POST
 
-{ "title": "Learn Spring", "description": "Build REST API", "deadline": "2025-08-20", "priority": "High", "status": "Pending" }
+* *Request body*:
 
-Get All Tasks
+  json
+  {
+    "title": "Task Title",
+    "description": "Task Description",
+    "completed": false
+  }
+  
 
-GET /tasks
+* *Response*:
 
-Get Task by ID
+  json
+  {
+    "id": 1,
+    "title": "Task Title",
+    "description": "Task Description",
+    "completed": false
+  }
+  
 
-GET /tasks/{id}
+### 2. *Get All Tasks*
 
-Update Task
+* *URL*: /api/tasks
+* *Method*: GET
+* *Response*:
 
-PUT /tasks/{id}
+  json
+  [
+    {
+      "id": 1,
+      "title": "Task Title",
+      "description": "Task Description",
+      "completed": false
+    }
+  ]
+  
 
-{ "title": "Learn Spring Boot", "description": "REST + Swagger", "deadline": "2025-08-25", "priority": "Medium", "status": "Completed" }
+### 3. *Update a Task*
 
-Delete Task
+* *URL*: /api/tasks/{id}
 
-DELETE /tasks/{id}
+* *Method*: PUT
 
-🛠 Test with cURL
+* *Request body*:
 
-Create
-curl -X POST http://localhost:8080/tasks
--H "Content-Type: application/json"
--d '{"title":"Learn Spring","description":"Build REST API","deadline":"2025-08-20","priority":"High","status":"Pending"}'
+  json
+  {
+    "title": "Updated Task Title",
+    "description": "Updated Description",
+    "completed": true
+  }
+  
 
-Get all
-curl http://localhost:8080/tasks
+* *Response*:
 
-Get by ID
-curl http://localhost:8080/tasks/1
+  json
+  {
+    "id": 1,
+    "title": "Updated Task Title",
+    "description": "Updated Description",
+    "completed": true
+  }
+  
 
-Update
-curl -X PUT http://localhost:8080/tasks/1
--H "Content-Type: application/json"
--d '{"title":"Learn Spring Boot","description":"REST + Swagger","deadline":"2025-08-25","priority":"Medium","status":"Completed"}'
+### 4. *Delete a Task*
 
-Delete
-curl -X DELETE http://localhost:8080/tasks/1
+* *URL*: /api/tasks/{id}
+* *Method*: DELETE
+* *Response*: 200 OK if successful.
+
+
